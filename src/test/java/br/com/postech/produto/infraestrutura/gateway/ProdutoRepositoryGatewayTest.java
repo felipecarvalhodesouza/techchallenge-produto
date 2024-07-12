@@ -109,8 +109,7 @@ class ProdutoRepositoryGatewayTest {
 
 		List<Produto> result = produtoRepositoryGateway.getTodosOsProdutos();
 
-		assertThat(result).isNotNull();
-		assertThat(result).hasSize(2);
+		assertThat(result).isNotNull().hasSize(2);
 		assertThat(result.get(0).getId()).isEqualTo(1L);
 		assertThat(result.get(0).getNomeProduto()).isEqualTo("Produto 1");
 		assertThat(result.get(1).getId()).isEqualTo(2L);
@@ -141,8 +140,7 @@ class ProdutoRepositoryGatewayTest {
 
 		List<Produto> result = produtoRepositoryGateway.getTodosOsProdutosPor(tipoProduto);
 
-		assertThat(result).isNotNull();
-		assertThat(result).hasSize(2);
+		assertThat(result).isNotNull().hasSize(2);
 		assertThat(result.get(0).getId()).isEqualTo(1L);
 		assertThat(result.get(0).getNomeProduto()).isEqualTo("Produto 1");
 		assertThat(result.get(0).getTipoProduto()).isEqualTo(tipoProduto);

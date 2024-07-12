@@ -10,7 +10,13 @@ class ProdutoApplicationIT {
 
 	@Test
 	void main() {
-		ProdutoApplication.main(new String[] {});
-		assertThat(true).isTrue();
+		boolean isRunning = true;
+		try {
+			ProdutoApplication.main(new String[] {});
+		} catch (Exception e) {
+			isRunning = false;
+		}
+
+		assertThat(isRunning).isTrue();
 	}
 }

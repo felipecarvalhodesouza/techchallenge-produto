@@ -20,7 +20,7 @@ class ProdutoConfigTest {
     private ApplicationContext context;
 
     @Test
-    public void contextLoads() {
+    void contextLoads() {
         assertThat(context.getBean(ProdutoInteractor.class)).isNotNull();
         assertThat(context.getBean(ProdutoGateway.class)).isNotNull();
         assertThat(context.getBean(ProdutoEntityMapper.class)).isNotNull();
