@@ -18,12 +18,12 @@ public class ProdutoConfig {
 	}
 
 	@Bean
-	ProdutoGateway ProdutoGateway(ProdutoRepository produtoRepository, ProdutoEntityMapper mapper) {
+	ProdutoGateway produtoGateway(ProdutoRepository produtoRepository, ProdutoEntityMapper mapper) {
 		return new ProdutoRepositoryGateway(produtoRepository, mapper);
 	}
 
 	@Bean
-	ProdutoEntityMapper ProdutoEntityMapper() {
+	ProdutoEntityMapper produtoEntityMapper() {
 		return new ProdutoEntityMapper();
 	}
 }

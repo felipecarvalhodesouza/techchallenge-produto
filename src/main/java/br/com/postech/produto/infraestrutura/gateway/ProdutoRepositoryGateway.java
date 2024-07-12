@@ -1,7 +1,6 @@
 package br.com.postech.produto.infraestrutura.gateway;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import br.com.postech.produto.application.gateway.ProdutoGateway;
 import br.com.postech.produto.domain.entity.Produto;

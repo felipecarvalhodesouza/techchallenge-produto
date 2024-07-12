@@ -5,21 +5,17 @@ import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.standaloneSetup;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.cache.support.NullValue;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
@@ -36,13 +32,13 @@ class ProdutoControllerTest {
 	private ProdutoController produtoController;
 
 	@BeforeEach
-	public void setUp() {
+	void setUp() {
 		MockitoAnnotations.openMocks(this);
 		standaloneSetup(produtoController);
 	}
 
 	@Test
-	public void deveRegistrarProduto() {
+	void deveRegistrarProduto() {
 		Produto produto = new Produto();
 		produto.setNomeProduto("Produto Teste");
 		when(produtoInteractor.registrar(any(Produto.class))).thenReturn(produto);
@@ -63,7 +59,7 @@ class ProdutoControllerTest {
 	}
 
 	@Test
-	public void deveEditarProduto() {
+	void deveEditarProduto() {
 		Produto produto = new Produto();
 		produto.setNomeProduto("Produto Editado");
 		when(produtoInteractor.editar(any(Produto.class))).thenReturn(produto);
@@ -84,7 +80,7 @@ class ProdutoControllerTest {
 	}
 
 	@Test
-	public void deveRemoverProduto() {
+	void deveRemoverProduto() {
 		Long id = 1L;
 
 		given()
@@ -97,7 +93,7 @@ class ProdutoControllerTest {
 	}
 
 	@Test
-	public void deveBuscarTodosOsProdutos() {
+	void deveBuscarTodosOsProdutos() {
 		List<Produto> produtos = Arrays.asList(new Produto(), new Produto());
 		when(produtoInteractor.getTodosOsProdutos()).thenReturn(produtos);
 
@@ -109,15 +105,14 @@ class ProdutoControllerTest {
 							  	.extract()
 							  	.as(new TypeRef<List<Produto>>() {});
 
-		assertThat(result).isNotNull();
-		assertThat(result).hasSize(2);
+		assertThat(result).isNotNull().hasSize(2);
 		verify(produtoInteractor).getTodosOsProdutos();
 	}
 
 	@Test
-	public void deveBuscarTodosOsProdutosPorTipo() {
+	void deveBuscarTodosOsProdutosPorTipo() {
 		List<Produto> produtos = Arrays.asList(new Produto(), new Produto());
-		when(produtoInteractor.getTodosOsProdutosPor(eq("Lanche"))).thenReturn(produtos);
+		when(produtoInteractor.getTodosOsProdutosPor("Lanche")).thenReturn(produtos);
 
 		List<Produto> result = given()
 							  .when()
@@ -127,13 +122,12 @@ class ProdutoControllerTest {
 							  	.extract()
 							  	.as(new TypeRef<List<Produto>>() {});
 
-		assertThat(result).isNotNull();
-		assertThat(result).hasSize(2);
+		assertThat(result).isNotNull().hasSize(2);
 		verify(produtoInteractor).getTodosOsProdutosPor("Lanche");
 	}
 
 	@Test
-	public void deveBuscarProdutoPorNome() {
+	void deveBuscarProdutoPorNome() {
 		Produto produto = new Produto();
 		produto.setNomeProduto("Produto Teste");
 		when(produtoInteractor.getProdutoPorNome("Produto Teste")).thenReturn(produto);
@@ -153,7 +147,7 @@ class ProdutoControllerTest {
 	}
 	
 	@Test
-	public void deveRetornarNullQuandoProdutoInexistente() {
+	void deveRetornarNullQuandoProdutoInexistente() {
 		Produto produto = new Produto();
 		produto.setNomeProduto("Produto Teste");
 		when(produtoInteractor.getProdutoPorNome("Produto Teste")).thenReturn(null);
