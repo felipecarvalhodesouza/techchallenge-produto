@@ -27,8 +27,7 @@ public class ProdutoRepositoryGateway implements ProdutoGateway{
 
 	@Override
 	public Produto editar(Produto produto) {
-		ProdutoEntity entity = produtoRepository.save(mapper.toEntity(produto));
-		return mapper.toDomainObject(entity);
+		return registrar(produto);
 	}
 
 	@Override
@@ -41,7 +40,7 @@ public class ProdutoRepositoryGateway implements ProdutoGateway{
 		return produtoRepository.findAll()
 								.stream()
 								.map( entity -> mapper.toDomainObject(entity))
-								.collect(Collectors.toList());
+								.toList();
 	}
 
 	@Override
@@ -49,7 +48,7 @@ public class ProdutoRepositoryGateway implements ProdutoGateway{
 		return produtoRepository.findAllByTipoProduto(tipoProduto)
 								.stream()
 								.map( entity -> mapper.toDomainObject(entity))
-								.collect(Collectors.toList());
+								.toList();
 	}
 
 	@Override

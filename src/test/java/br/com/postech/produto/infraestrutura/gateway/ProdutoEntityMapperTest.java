@@ -17,12 +17,12 @@ class ProdutoEntityMapperTest {
     private ProdutoEntityMapper produtoMapper;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void deveConverterDomainToEntity() {
+    void deveConverterDomainToEntity() {
         Produto produtoDomain = new Produto();
         produtoDomain.setId(1L);
         produtoDomain.setNomeProduto("Produto Teste");
@@ -39,7 +39,7 @@ class ProdutoEntityMapperTest {
     }
 
     @Test
-    public void deveConverterEntityToDomain() {
+    void deveConverterEntityToDomain() {
         ProdutoEntity entity = new ProdutoEntity();
         entity.setId(1L);
         entity.setNomeProduto("Produto Teste");

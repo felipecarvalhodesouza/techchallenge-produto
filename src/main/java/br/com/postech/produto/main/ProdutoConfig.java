@@ -13,13 +13,13 @@ import br.com.postech.produto.infraestrutura.persistence.ProdutoRepository;
 public class ProdutoConfig {
 
 	@Bean
-	ProdutoInteractor createProdutoUseCase(ProdutoGateway ProdutoGateway) {
-		return new ProdutoInteractor(ProdutoGateway);
+	ProdutoInteractor createProdutoUseCase(ProdutoGateway produtoGateway) {
+		return new ProdutoInteractor(produtoGateway);
 	}
 
 	@Bean
-	ProdutoGateway ProdutoGateway(ProdutoRepository ProdutoRepository, ProdutoEntityMapper mapper) {
-		return new ProdutoRepositoryGateway(ProdutoRepository, mapper);
+	ProdutoGateway ProdutoGateway(ProdutoRepository produtoRepository, ProdutoEntityMapper mapper) {
+		return new ProdutoRepositoryGateway(produtoRepository, mapper);
 	}
 
 	@Bean

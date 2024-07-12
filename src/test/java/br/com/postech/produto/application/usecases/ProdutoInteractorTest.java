@@ -31,12 +31,12 @@ class ProdutoInteractorTest {
 	private ProdutoInteractor produtoInteractor;
 
 	@BeforeEach
-	public void setUp() {
+	void setUp() {
 		MockitoAnnotations.openMocks(this);
 	}
 
 	@Test
-	public void deveRegistrarProduto() {
+	void deveRegistrarProduto() {
 		Produto produto = new Produto();
 		when(produtoGateway.registrar(any(Produto.class))).thenReturn(produto);
 
@@ -47,7 +47,7 @@ class ProdutoInteractorTest {
 	}
 
 	@Test
-	public void deveEditarProduto() {
+	void deveEditarProduto() {
 		Produto produto = new Produto();
 		when(produtoGateway.editar(any(Produto.class))).thenReturn(produto);
 
@@ -58,7 +58,7 @@ class ProdutoInteractorTest {
 	}
 
 	@Test
-	public void deveRemoverProduto() {
+	void deveRemoverProduto() {
 		Long id = 1L;
 
 		produtoInteractor.remover(id);
@@ -67,7 +67,7 @@ class ProdutoInteractorTest {
 	}
 
 	@Test
-	public void deveBuscarTodosOsProdutos() {
+	void deveBuscarTodosOsProdutos() {
 		List<Produto> produtos = Arrays.asList(new Produto(), new Produto());
 		when(produtoGateway.getTodosOsProdutos()).thenReturn(produtos);
 
@@ -79,9 +79,9 @@ class ProdutoInteractorTest {
 	}
 
 	@Test
-	public void deveBuscarTodosOsProdutosPorTipo() {
+	void deveBuscarTodosOsProdutosPorTipo() {
 		List<Produto> produtos = Arrays.asList(new Produto(), new Produto());
-		when(produtoGateway.getTodosOsProdutosPor(eq(TipoProduto.LANCHE))).thenReturn(produtos);
+		when(produtoGateway.getTodosOsProdutosPor(TipoProduto.LANCHE)).thenReturn(produtos);
 
 		List<Produto> result = produtoInteractor.getTodosOsProdutosPor("Lanche");
 
@@ -91,7 +91,7 @@ class ProdutoInteractorTest {
 	}
 
 	@Test
-	public void deveRetornarListaVaziaAoBuscarTipoInvalido() {
+	void deveRetornarListaVaziaAoBuscarTipoInvalido() {
 		List<Produto> result = produtoInteractor.getTodosOsProdutosPor("Tipo Inválido");
 
 		assertThat(result).isEmpty();
@@ -99,7 +99,7 @@ class ProdutoInteractorTest {
 	}
 
 	@Test
-	public void deveBuscarProdutosPorNome() {
+	void deveBuscarProdutosPorNome() {
 		Produto produto = new Produto();
 		when(produtoGateway.getProdutoPorNome("Produto Teste")).thenReturn(produto);
 

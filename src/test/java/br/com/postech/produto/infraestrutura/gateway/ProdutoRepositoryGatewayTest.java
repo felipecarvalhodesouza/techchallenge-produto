@@ -33,12 +33,12 @@ class ProdutoRepositoryGatewayTest {
 	private ProdutoRepositoryGateway produtoRepositoryGateway;
 
 	@BeforeEach
-	public void setUp() {
+	void setUp() {
 		MockitoAnnotations.openMocks(this);
 	}
 
 	@Test
-	public void deveRegistrarProduto() {
+	void deveRegistrarProduto() {
 		Produto produto = new Produto();
 		produto.setNomeProduto("Produto Teste");
 
@@ -59,7 +59,7 @@ class ProdutoRepositoryGatewayTest {
 	}
 
 	@Test
-	public void deveEditarProduto() {
+	void deveEditarProduto() {
 		Produto produto = new Produto();
 		produto.setId(1L);
 		produto.setNomeProduto("Produto Editado");
@@ -83,7 +83,7 @@ class ProdutoRepositoryGatewayTest {
 	}
 
 	@Test
-	public void deveRemoverProduto() {
+	void deveRemoverProduto() {
 		Long id = 1L;
 
 		produtoRepositoryGateway.remover(id);
@@ -92,7 +92,7 @@ class ProdutoRepositoryGatewayTest {
 	}
 
 	@Test
-	public void deveBuscarTodosOsProdutos() {
+	void deveBuscarTodosOsProdutos() {
 		ProdutoEntity entity1 = new ProdutoEntity();
 		entity1.setId(1L);
 		entity1.setNomeProduto("Produto 1");
@@ -120,7 +120,7 @@ class ProdutoRepositoryGatewayTest {
 	}
 
 	@Test
-	public void deveBuscarTodosOsProdutosPorTipo() {
+	void deveBuscarTodosOsProdutosPorTipo() {
 		TipoProduto tipoProduto = TipoProduto.LANCHE;
 
 		ProdutoEntity entity1 = new ProdutoEntity();
@@ -154,7 +154,7 @@ class ProdutoRepositoryGatewayTest {
 	}
 
 	@Test
-	public void deveBuscarProdutoPorNome() {
+	void deveBuscarProdutoPorNome() {
 		String nomeProduto = "Produto 1";
 
 		ProdutoEntity entity = new ProdutoEntity();
@@ -174,7 +174,7 @@ class ProdutoRepositoryGatewayTest {
 	}
 	
 	@Test
-	public void deveRetornarNullQuandoProdutoInexistente() {
+	void deveRetornarNullQuandoProdutoInexistente() {
 		String nomeProduto = "Produto 1";
 
 		when(produtoRepository.getByNomeProduto(nomeProduto)).thenReturn(Collections.emptyList());
