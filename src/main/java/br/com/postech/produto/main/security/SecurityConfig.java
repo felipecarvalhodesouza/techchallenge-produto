@@ -40,7 +40,6 @@ public class SecurityConfig {
     
     @Bean
     public JwtDecoder jwtDecoder() {
-//        String jwkSetUri = "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_pGFsCFVuS/.well-known/jwks.json";
         return NimbusJwtDecoder.withJwkSetUri(jwkSetUri).build();
     }
     
