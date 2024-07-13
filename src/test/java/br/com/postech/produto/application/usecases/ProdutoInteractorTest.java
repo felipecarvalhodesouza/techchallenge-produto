@@ -58,7 +58,7 @@ class ProdutoInteractorTest {
 
 	@Test
 	void deveRemoverProduto() {
-		Long id = 1L;
+		String id = "b5132c97-b776-4f1c-98b8-042583e15a04";
 
 		produtoInteractor.remover(id);
 

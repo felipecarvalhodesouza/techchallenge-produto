@@ -11,7 +11,7 @@ public interface ProdutoGateway {
 
 	Produto editar(Produto produto);
 
-	void remover(Long id);
+	void remover(String id);
 
 	List<Produto> getTodosOsProdutos();
 

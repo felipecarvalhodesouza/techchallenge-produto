@@ -1,6 +1,7 @@
 package br.com.postech.produto.infraestrutura.gateway;
 
 import java.util.List;
+import java.util.UUID;
 
 import br.com.postech.produto.application.gateway.ProdutoGateway;
 import br.com.postech.produto.domain.entity.Produto;
@@ -20,17 +21,31 @@ public class ProdutoRepositoryGateway implements ProdutoGateway{
 
 	@Override
 	public Produto registrar(Produto produto) {
+		produto.setId(UUID.randomUUID());
 		ProdutoEntity entity = produtoRepository.save(mapper.toEntity(produto));
 		return mapper.toDomainObject(entity);
 	}
 
 	@Override
 	public Produto editar(Produto produto) {
-		return registrar(produto);
+		ProdutoEntity registroPersistido = produtoRepository.findById(produto.getId().toString());
+		
+		if (produto.getNomeProduto() != null) {
+			registroPersistido.setNomeProduto(produto.getNomeProduto());
+		}
+		if (produto.getTipoProduto() != null) {
+			registroPersistido.setTipoProduto(produto.getTipoProduto());
+		}
+		if (produto.getValor() != 0) {
+			registroPersistido.setValor(produto.getValor());
+		}	
+		
+		ProdutoEntity entity = produtoRepository.save(registroPersistido);
+		return mapper.toDomainObject(entity);
 	}
 
 	@Override
-	public void remover(Long id) {
+	public void remover(String id) {
 		produtoRepository.deleteById(id);
 	}
 

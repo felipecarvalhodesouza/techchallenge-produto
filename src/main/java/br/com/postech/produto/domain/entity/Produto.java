@@ -1,19 +1,21 @@
 package br.com.postech.produto.domain.entity;
 
+import java.util.UUID;
+
 import br.com.postech.produto.domain.enumeration.TipoProduto;
 
 public class Produto {
 
-	private Long id;
+	private UUID id;
 	private String nomeProduto;
 	private TipoProduto tipoProduto;
 	private double valor;
 
-	public Long getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 

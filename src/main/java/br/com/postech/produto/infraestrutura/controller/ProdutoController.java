@@ -57,7 +57,7 @@ public class ProdutoController {
 	@Operation(summary = "Remover um produto", description = "Remover um cliente existente")
 	@ApiResponse(responseCode = "204")
 	@DeleteMapping(path = "/{id}")
-	public ResponseEntity<Object> removerProduto(@PathVariable Long id) {
+	public ResponseEntity<Object> removerProduto(@PathVariable String id) {
 		produtoInteractor.remover(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

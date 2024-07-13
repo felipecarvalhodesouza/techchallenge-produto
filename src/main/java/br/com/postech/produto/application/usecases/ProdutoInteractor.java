@@ -23,7 +23,7 @@ public class ProdutoInteractor {
 		return produtoGateway.editar(produto);
 	}
 
-	public void remover(Long id) {
+	public void remover(String id) {
 		produtoGateway.remover(id);
 	}
 
