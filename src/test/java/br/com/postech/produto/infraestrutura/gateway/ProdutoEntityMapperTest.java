@@ -51,7 +51,7 @@ class ProdutoEntityMapperTest {
         Produto produto = produtoMapper.toDomainObject(entity);
 
         assertThat(produto).isNotNull();
-        assertThat(produto.getId().toString()).isEqualTo(entity.getId());
+        assertThat(produto.getId()).hasToString(entity.getId());
         assertThat(produto.getNomeProduto()).isEqualTo(entity.getNomeProduto());
         assertThat(produto.getTipoProduto()).isEqualTo(entity.getTipoProduto());
         assertThat(produto.getValor()).isEqualTo(entity.getValor());

@@ -3,7 +3,6 @@ package br.com.postech.produto.main.security;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,7 +18,7 @@ public class KeycloakRealmRoleConverter implements Converter<Jwt, Collection<Gra
             return groups.stream()
                     .map(role -> "ROLE_" + role.toUpperCase())
                     .map(role -> (GrantedAuthority) () -> role)
-                    .collect(Collectors.toList());
+                    .toList();
         } else {
             return Collections.emptyList();
         }

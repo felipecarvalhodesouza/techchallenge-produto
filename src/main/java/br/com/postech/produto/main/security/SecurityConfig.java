@@ -1,11 +1,10 @@
 package br.com.postech.produto.main.security;
 
-import java.net.URL;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -19,20 +18,18 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 	
     @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}")
-    URL jwkSetUri;
+    String jwkSetUri;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> 
-            	csrf.disable()
-            )
+            .csrf(Customizer.withDefaults())
             .authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
                 	.requestMatchers(HttpMethod.GET).permitAll()
                     .anyRequest().hasAnyAuthority("ROLE_ADMIN")
             )
-           .oauth2ResourceServer((oauth2) -> oauth2.jwt( jwt -> {
+           .oauth2ResourceServer(oauth2 -> oauth2.jwt( jwt -> {
         	   jwt.decoder(jwtDecoder());
         	   jwt.jwtAuthenticationConverter(jwtAuthenticationConverter());
            	}))
@@ -43,7 +40,7 @@ public class SecurityConfig {
     
     @Bean
     public JwtDecoder jwtDecoder() {
-        String jwkSetUri = "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_pGFsCFVuS/.well-known/jwks.json";
+//        String jwkSetUri = "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_pGFsCFVuS/.well-known/jwks.json";
         return NimbusJwtDecoder.withJwkSetUri(jwkSetUri).build();
     }
     

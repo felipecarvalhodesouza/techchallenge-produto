@@ -52,7 +52,7 @@ class ProdutoRepositoryGatewayTest {
 
 	@Test
 	void deveRegistrarProduto() {
-		Produto produto = new Produto();
+		produto = new Produto();
 		produto.setNomeProduto("Produto Teste");
 
 		ProdutoEntity entity = new ProdutoEntity();
@@ -73,7 +73,7 @@ class ProdutoRepositoryGatewayTest {
 
 	@Test
 	void deveEditarProduto() {
-		Produto produto = new Produto();
+		produto = new Produto();
 		produto.setId(UUID.fromString("6ca9fa9f-9450-4438-83ed-8dc25b56e2c4"));
 		produto.setNomeProduto("Produto Editado");
 
@@ -261,7 +261,7 @@ class ProdutoRepositoryGatewayTest {
 	}
 
 	private Produto getNovoProduto(UUID id, String nomeProduto, TipoProduto tipoProduto) {
-		Produto produto = new Produto();
+		produto = new Produto();
 		produto.setId(id);
 		produto.setNomeProduto(nomeProduto);
 		produto.setTipoProduto(tipoProduto);
