@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: goodburguer-deployment
+  name: goodburguer-produto-deployment
   labels:
     app: goodburguer-produto-app
 spec:
