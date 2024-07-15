@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goodburguer-deployment
+  labels:
+    app: goodburguer-produto-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: goodburguer-produto-app
+  template:
+    metadata:
+      labels:
+        app: goodburguer-produto-app
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+                - arm64
+      containers:
+      - name: goodburguer-produto
+        image: felipecarvalhodesouza/goodburguer-produto:latest
+        resources:
+            requests:
+              cpu: 500m
+              memory: 1024Mi
+            limits:
+              cpu: 2000m
+              memory: 2048Mi
+        ports:
+        - name: http
+          containerPort: 8080
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: DATABASE_URL
+            valueFrom:
+              configMapKeyRef:
+                name: documentdb-config
+                key: DATABASE_URL

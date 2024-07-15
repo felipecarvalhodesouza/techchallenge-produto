@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: documentdb-config
+data:
+  DATABASE_URL:mongodb+srv://techchallengeadmin:3dbjN2MYThSEIsne@goodburguer-mongo.rfqetvw.mongodb.net/goodburguer-produtos?retryWrites=true&w=majority&appName=goodburguer-mongo
