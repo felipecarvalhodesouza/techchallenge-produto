@@ -68,7 +68,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Configure kubectl
-        run: aws eks --region us-east-1 update-kubeconfig --name goodburguer-produto
+        run: aws eks --region us-east-1 update-kubeconfig --name goodburguer
 
       - name: Deploy Keys
         run: kubectl apply -f ./k8s/goodburguer-produto-keys.yaml
